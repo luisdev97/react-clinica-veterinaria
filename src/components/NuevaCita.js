@@ -53,7 +53,7 @@ class NuevaCita extends Component {
             <div className="card mt-5 py-5">
                 <div className="card-body">
 
-                    <h2 class="card-title text-center mb-5">
+                    <h2 className="card-title text-center mb-5">
                         Agregue su nueva cita
                     </h2>
 
