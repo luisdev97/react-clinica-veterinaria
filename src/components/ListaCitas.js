@@ -1,12 +1,16 @@
 import React from 'react';
 import Cita from './Cita';
+import PropTypes from 'prop-types';
+
 
 //rsc
-const ListaCitas = ({ citas, eliminarCita }) => (
-    <div className="card mt-2 py-5">
+const ListaCitas = ({ citas, eliminarCita }) => {
+    const mensaje = Object.keys(citas).length === 0 ? 'No hay citas' : 'Administra las citas aquí';
+    return (
+        <div className="card mt-2 py-5">
 
         <div className="card-body">
-            <h2 className="card-title text-center">Administra las citas</h2>
+            <h2 className="card-title text-center">{ mensaje }</h2>
         </div>
 
         <div className="lista-citas">
@@ -17,6 +21,12 @@ const ListaCitas = ({ citas, eliminarCita }) => (
             }
         </div>
     </div>
-);
+    )
+}
 
+
+ListaCitas.propTypes = {
+    citas: PropTypes.array.isRequired,
+    eliminarCita: PropTypes.func.isRequired
+}
 export default ListaCitas;

@@ -11,6 +11,21 @@ class App extends React.Component {
     citas: []
   }
 
+
+  componentDidMount(){
+    const citasLS = localStorage.getItem('citas');
+    console.log(citasLS);
+    if(citasLS)
+      this.setState({
+        citas: JSON.parse(citasLS)
+      });
+  }
+
+  componentDidUpdate(){
+    console.log('se actualizara');
+    localStorage.setItem('citas',JSON.stringify(this.state.citas));
+  }
+
   crearCita = datos => {
       const citas = [...this.state.citas, datos];
       this.setState({ citas });
