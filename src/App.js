@@ -21,7 +21,7 @@ class App extends React.Component {
           <Header titulo="Clinica veterinaria"/>
           <div className="row">
             <div className="col-md-10 mx-auto">
-              <NuevaCita crearCita={crearCita}/>
+              <NuevaCita crearCita={this.crearCita}/>
             </div>
           </div>
         </div> 
