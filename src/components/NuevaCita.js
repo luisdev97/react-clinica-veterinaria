@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
+
+
 
 class NuevaCita extends Component {
 
@@ -9,7 +12,8 @@ class NuevaCita extends Component {
             fecha: null,
             hora: null,
             sintomas: ""
-        }
+        },
+        error: false
     }
 
     handleChange = e => {
@@ -18,9 +22,26 @@ class NuevaCita extends Component {
                 ...this.state.cita,[e.target.name]: e.target.value
             }
         });
-        
-        console.log(this.state);
     }
+
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const { mascota, propietario, fecha, hora, sintomas} = this.state.cita;
+       
+        if(mascota === "" || propietario === "" || !fecha || !hora || sintomas === ""){
+            this.setState({
+                error: true
+            });
+
+            return;
+        }
+        
+        const nuevaCita = {...this.state.cita, id: uuid()};
+        this.props.crearCita(nuevaCita);
+    
+    }
+
 
     render() {
 
@@ -32,7 +53,7 @@ class NuevaCita extends Component {
                         Agregue su nueva cita
                     </h2>
 
-                    <form>
+                    <form onSubmit={this.handleSubmit} >
 
                          <div className="form-group row">
                              <label htmlFor="" className="col-sm-4 col-lg-2 col-form-label">
